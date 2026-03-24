@@ -1,7 +1,3 @@
-"""
-Configurações do servidor de monitoramento pervasivo.
-"""
-
 import os
 
 # Endereço do servidor — 0.0.0.0 aceita conexões de qualquer interface

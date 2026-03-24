@@ -1,7 +1,3 @@
-"""
-Módulo de log — salva cada leitura recebida em um arquivo .txt com timestamp.
-"""
-
 import os
 from datetime import datetime
 

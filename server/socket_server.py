@@ -1,7 +1,3 @@
-"""
-Modulo do servidor TCP socket -- escuta conexoes e orquestra o processamento.
-"""
-
 import sys
 import socket
 
@@ -11,7 +7,6 @@ from server.logger import save_log
 
 
 def _print(text=""):
-    """Print seguro para Windows (evita erros de encoding)."""
     try:
         print(text)
     except UnicodeEncodeError:
@@ -31,7 +26,6 @@ def start_server():
            c. Exibe no console (handler)
            d. Salva no log (logger)
     """
-    # Cores ANSI
     CYAN = "\033[96m"
     GREEN = "\033[92m"
     RED = "\033[91m"
@@ -94,10 +88,10 @@ def start_server():
             except Exception as e:
                 _print(f"{RED}[ERRO]{RESET} Erro ao processar dados de {addr}: {e}")
 
-            finally:
-                client_socket.close()
-                _print(f"{YELLOW}[DESCONEXAO]{RESET} Cliente {addr[0]}:{addr[1]} desconectado")
-                _print()
+            # finally:
+            #     client_socket.close()
+            #     _print(f"{YELLOW}[DESCONEXAO]{RESET} Cliente {addr[0]}:{addr[1]} desconectado")
+            #     _print()
 
     except KeyboardInterrupt:
         _print(f"\n{YELLOW}[INFO]{RESET} Servidor encerrado pelo usuario.")

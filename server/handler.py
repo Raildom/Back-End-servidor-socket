@@ -1,7 +1,3 @@
-"""
-Módulo de processamento — decodifica e exibe os dados recebidos do app Android.
-"""
-
 from datetime import datetime
 
 
@@ -22,15 +18,11 @@ def parse_message(raw: str) -> dict:
     data = {}
 
     try:
-        # Remove espaços em branco e quebras de linha
         raw = raw.strip()
-
-        # Separa os pares chave:valor por ";"
         pairs = raw.split(";")
 
         for pair in pairs:
             if ":" in pair:
-                # Divide apenas na primeira ocorrência de ":"
                 key, value = pair.split(":", 1)
                 data[key.strip().lower()] = value.strip()
 
@@ -55,7 +47,6 @@ def display_data(data: dict, addr: tuple):
     lat = data.get("lat", "N/A")
     lon = data.get("lon", "N/A")
 
-    # Cores ANSI para o terminal
     CYAN = "\033[96m"
     GREEN = "\033[92m"
     YELLOW = "\033[93m"
