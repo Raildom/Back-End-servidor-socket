@@ -12,15 +12,6 @@ def setup_log_dir():
 
 
 def save_log(data: dict):
-    """
-    Salva uma entrada de log no arquivo sensor_log.txt.
-
-    Formato:
-        [2026-03-24 10:55:00] Bateria: 85% | Lat: -23.5505 | Lon: -46.6333
-
-    Args:
-        data: Dicionário com chaves 'bateria', 'lat', 'lon'.
-    """
     setup_log_dir()
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
