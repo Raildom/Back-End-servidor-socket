@@ -58,7 +58,7 @@ Edite `server/config.py` para alterar:
 
 | Variável    | Descrição                              | Padrão           |
 |-------------|----------------------------------------|------------------|
-| HOST        | Endereço IP do servidor (EXEMPLO:)               | `10.24.105.135`  |
+| HOST        | Endereço IP do servidor (EXEMPLO:)     | `10.24.105.135`  |
 | PORT        | Porta TCP                              | `5000`           |
 | BUFFER_SIZE | Tamanho máximo do buffer de recepção   | `1024`           |
 | LOG_DIR     | Diretório para arquivos de log         | `logs/`          |
