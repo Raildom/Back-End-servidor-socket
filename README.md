@@ -1,51 +1,47 @@
-# Servidor de Monitoramento Pervasivo (Socket + FastAPI)
+# Servidor de Monitoramento Pervasivo (TCP Socket)
 
-1. Um servidor TCP Socket puro na porta 5000 (para receber os dados dos sensores do Android).
-2. Uma API Web em FastAPI na porta 8000 (para facilitar a descoberta do IP pelo React Native).
+Servidor TCP Socket para receber dados de sensores (bateria e localização) de dispositivos móveis.
 
 ## Estrutura do Projeto
 
 ```
 Back-End-servidor-socket/
 ├── server/
-│   ├── __init__.py          
-│   ├── app.py               # API Web FastAPI (rotas)
-│   ├── config.py            # Configuracoes (host, porta, log)
-│   ├── handler.py           # Decodificacao e exibicao
+│   ├── config.py            # Configurações (host, porta, log)
+│   ├── handler.py           # Decodificação e exibição dos dados
 │   ├── logger.py            # Salva leituras com timestamp
-│   ├── socket_server.py     # Servidor TCP socket (raw TCP)
-│   └── utils.py             # Descoberta do IP local
+│   └── socket_server.py     # Servidor TCP socket
 ├── logs/
-│   └── sensor_log.txt       # Arquivo de gravacoes
-├── main.py                  # Ponto original de chamada
+│   └── sensor_log.txt       # Arquivo de gravações
+├── main.py                  # Ponto de entrada do servidor
+├── test_client.py           # Cliente de teste para o servidor
 └── README.md
 ```
 
-## Como Rodar o Servidor
+## Como Rodar
 
-### 1. Instalar as dependencias
-### 1. Pre-requisitos
-- Python instalado. Apenas bibliotecas nativas sao utilizadas (nao precisa de pip install).
+### Pré-requisitos
 
-### 2. Executar
+- Python 3.x instalado
+- Apenas bibliotecas nativas são utilizadas
+
+### Executar o Servidor
+
 ```bash
 python main.py
 ```
 
-O terminal exibira a inicializacao do servidor e aguardara conexoes na porta **5000**.
+O terminal exibirá a inicialização do servidor e aguardará conexões na porta **5000**.
 
-## Integracao com Front-End (React Native)
+### Executar o Cliente de Teste
 
-Para conectar do seu app React Native a porta 5000 do TCP Socket, utilize uma biblioteca nativa como `react-native-tcp-socket` e conecte-se diretamente no IP local (IPv4) da sua maquina roteadora/PC.
+Em outro terminal:
 
-## Formato da Mensagem via TCP Socket
-
-O app deve enviar via RAW TCP uma string com o seguinte conteudo:
-
-```
-bateria:85;lat:-23.5505;lon:-46.6333
+```bash
+python test_client.py
 ```
 
+O cliente de teste obtém automaticamente a bateria do sistema (Linux) e a localização via IP.
 
 ## Exemplo de Log (`logs/sensor_log.txt`)
 
@@ -53,6 +49,17 @@ bateria:85;lat:-23.5505;lon:-46.6333
 [2026-03-24 10:55:00] Bateria: 85% | Lat: -23.5505 | Lon: -46.6333
 ```
 
-## Configuracao
+## Configuração
 
-Edite `server/config.py` para alterar a porta TCP e outras configuracoes.
+OBS.: O ip do servidor deve ser o mesmo do cliente para que a conexão seja estabelecida.
+
+OBS.: O ip do servidor deve se adequar ao ambiente de rede onde o servidor está rodando.
+Edite `server/config.py` para alterar:
+
+| Variável    | Descrição                              | Padrão           |
+|-------------|----------------------------------------|------------------|
+| HOST        | Endereço IP do servidor (EXEMPLO:)               | `10.24.105.135`  |
+| PORT        | Porta TCP                              | `5000`           |
+| BUFFER_SIZE | Tamanho máximo do buffer de recepção   | `1024`           |
+| LOG_DIR     | Diretório para arquivos de log         | `logs/`          |
+| LOG_FILE    | Nome do arquivo de log                 | `sensor_log.txt` |
