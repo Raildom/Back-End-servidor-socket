@@ -51,8 +51,6 @@ O cliente de teste obtém automaticamente a bateria do sistema (Linux) e a local
 
 ## Configuração
 
-OBS.: O ip do servidor deve ser o mesmo do cliente para que a conexão seja estabelecida.
-
 OBS.: O ip do servidor deve se adequar ao ambiente de rede onde o servidor está rodando.
 Edite `server/config.py` para alterar:
 

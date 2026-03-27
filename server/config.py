@@ -1,7 +1,7 @@
 import os
 
 # Endereço do servidor — 0.0.0.0 aceita conexões de qualquer interface
-HOST = "192.168.1.53"
+HOST = "10.24.105.135"
 
 # Porta TCP padrão
 PORT = 5000
